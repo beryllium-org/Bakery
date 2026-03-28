@@ -17,13 +17,13 @@ msgstr ""
 "X-Crowdin-File: /main/po/bakery.pot\n"
 "X-Crowdin-File-ID: 6\n"
 
-#: data/org.bredos.bakery.desktop.in:3 bakery-gui.py:100 data/window.ui:11
-msgid "BredOS Installer"
-msgstr "Установщик BredOS"
+#: data/org.beryllium.bakery.desktop.in:3 bakery-gui.py:100 data/window.ui:11
+msgid "Beryllium OS Installer"
+msgstr "Установщик Beryllium OS"
 
-#: data/org.bredos.bakery.appdata.xml.in:7 bakery-gui.py:109
-msgid "Bakery is a simple installer for BredOS"
-msgstr "Пекарня - простой установщик для BredOS"
+#: data/org.beryllium.bakery.appdata.xml.in:7 bakery-gui.py:109
+msgid "Bakery is a simple installer for Beryllium OS"
+msgstr "Пекарня - простой установщик для Beryllium OS"
 
 #: config.py:11
 msgid "Keyboard"
@@ -87,8 +87,8 @@ msgid "translator-credits"
 msgstr "переводчик - кредиты"
 
 #: bakery-gui.py:108
-msgid "Copyright The BredOS developers"
-msgstr "Авторские права на разработчики BredOS"
+msgid "Copyright The Beryllium OS developers"
+msgstr "Авторские права на разработчики Beryllium OS"
 
 #: bakery-gui.py:114
 msgid "Translated by"
@@ -121,12 +121,12 @@ msgstr "Пользовательская установка"
 
 #. Do not translate literally, come up with a bread/baking related pun that works in the target language. Try to keep the idea that the installer will lead the way
 #: data/window.ui:92
-msgid "Let the Bakery installer whip up the perfect BredOS recipe for your machine!"
-msgstr "Пусть установщик Пекарни застрят идеальный рецепт BredOS для вашей машины!"
+msgid "Let the Bakery installer whip up the perfect Beryllium OS recipe for your machine!"
+msgstr "Пусть установщик Пекарни застрят идеальный рецепт Beryllium OS для вашей машины!"
 
 #: data/window.ui:93
-msgid "Welcome to BredOS!"
-msgstr "Добро пожаловать в BredOS!"
+msgid "Welcome to Beryllium OS!"
+msgstr "Добро пожаловать в Beryllium OS!"
 
 #: data/window.ui:129
 msgctxt "Button\n"
@@ -324,8 +324,8 @@ msgid "Please standby while installation is in progress"
 msgstr "Пожалуйста, ожидайте, пока идет процесс установки"
 
 #: data/install_screen.ui:10
-msgid "Installing BredOS"
-msgstr "Установка BredOS"
+msgid "Installing Beryllium OS"
+msgstr "Установка Beryllium OS"
 
 #: data/finish_screen.ui:9
 msgid "Installation Complete!"

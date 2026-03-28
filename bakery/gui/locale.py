@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ from bakery.locale import langs
 from babel import dates, numbers
 from babel import Locale as bLocale
 from datetime import datetime, UTC
-from bredos.utilities import time_fn
+from beryllium.utilities import time_fn
 
 import gi
 
@@ -33,7 +33,7 @@ from gi.repository import Gtk, Adw  # type: ignore
 
 
 @time_fn
-@Gtk.Template(resource_path="/org/bredos/bakery/ui/locale_screen.ui")
+@Gtk.Template(resource_path="/org/beryllium/bakery/ui/locale_screen.ui")
 class locale_screen(Adw.Bin):
     __gtype_name__ = "locale_screen"
 

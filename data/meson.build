@@ -1,6 +1,6 @@
 desktop_file = i18n.merge_file(
-        input: 'org.bredos.bakery.desktop.in',
-       output: 'org.bredos.bakery.desktop',
+        input: 'org.beryllium.bakery.desktop.in',
+       output: 'org.beryllium.bakery.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,
@@ -13,8 +13,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-        input: 'org.bredos.bakery.appdata.xml.in',
-       output: 'org.bredos.bakery.appdata.xml',
+        input: 'org.beryllium.bakery.appdata.xml.in',
+       output: 'org.beryllium.bakery.appdata.xml',
        po_dir: '../po',
       install: true,
   install_dir: join_paths(get_option('datadir'), 'appdata')
@@ -25,7 +25,7 @@ if appstream_util.found()
   test('Validate appstream file', appstream_util, args: ['validate', appstream_file])
 endif
 
-install_data('org.bredos.bakery.gschema.xml',
+install_data('org.beryllium.bakery.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 
@@ -40,8 +40,8 @@ compile_gresource = find_program('glib-compile-resources', required: true)
 if compile_gresource.found()
   test('Compile GResource',
        compile_gresource,
-       args: ['org.bredos.bakery.gresource.xml'])
-  install_data('org.bredos.bakery.gresource',
+       args: ['org.beryllium.bakery.gresource.xml'])
+  install_data('org.beryllium.bakery.gresource',
                install_dir: join_paths(get_option('datadir'), 'bakery', 'data'))
 else
   error('glib-compile-resources not found, cannot compile GResource')

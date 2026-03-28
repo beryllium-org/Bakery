@@ -8,7 +8,7 @@
   <template class="BakeryWindow" parent="AdwApplicationWindow">
     <property name="default-height">800</property>
     <property name="default-width">885</property>
-    <property name="title" translatable="yes">BredOS Installer</property>
+    <property name="title" translatable="yes">Beryllium OS Installer</property>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
@@ -49,7 +49,7 @@
                                     <child>
                                       <object class="GtkImage">
                                         <property name="pixel-size">128</property>
-                                        <property name="resource">/org/bredos/bakery/images/online-install.png</property>
+                                        <property name="resource">/org/beryllium/bakery/images/online-install.png</property>
                                       </object>
                                     </child>
                                     <child>
@@ -109,9 +109,9 @@
                         </child>
                       </object>
                     </property>
-                    <property name="description" translatable="yes" comments="Do not translate literally, come up with a bread/baking related pun that works in the target language. Try to keep the idea that the installer will lead the way&#10;">Let the Bakery installer whip up the perfect BredOS recipe for your machine!</property>
-                    <property name="icon-name">org.bredos.bakery-big</property>
-                    <property name="title" translatable="yes">Welcome to BredOS!</property>
+                    <property name="description" translatable="yes" comments="Do not translate literally, come up with a bread/baking related pun that works in the target language. Try to keep the idea that the installer will lead the way&#10;">Let the Bakery installer whip up the perfect Beryllium OS recipe for your machine!</property>
+                    <property name="icon-name">org.beryllium.bakery-big</property>
+                    <property name="title" translatable="yes">Welcome to Beryllium OS!</property>
                   </object>
                 </property>
               </object>

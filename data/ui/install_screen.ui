@@ -8,7 +8,7 @@
     <child>
       <object class="AdwStatusPage">
         <property name="description" translatable="yes">Please standby while installation is in progress</property>
-        <property name="title" translatable="yes">Installing BredOS</property>
+        <property name="title" translatable="yes">Installing Beryllium OS</property>
         <child>
           <object class="GtkBox">
             <property name="orientation">vertical</property>

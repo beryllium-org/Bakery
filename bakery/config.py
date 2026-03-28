@@ -1,7 +1,6 @@
-"Settings for the installer"
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +19,7 @@
 
 supported_languages = {"English": "en_US.UTF-8"}
 timezone = {"region": "Europe", "zone": "London"}
-installer_version = "1.3.2"
+installer_version = "1.4.0"
 api_version = 1
 
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/org/bredos/bakery/">
+  <gresource prefix="/org/beryllium/bakery/">
   <file preprocess="xml-stripblanks">ui/de_screen.ui</file>
   <file preprocess="xml-stripblanks">ui/finish_screen.ui</file>
   <file preprocess="xml-stripblanks">ui/install_screen.ui</file>

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 from bakery import lp, lrun, _, st_msgs
 from pyrunning import LoggingLevel
 from bakery.install import install
-from bredos.utilities import time_fn
+from beryllium.utilities import time_fn
 import threading
 import gi
 
@@ -30,7 +30,7 @@ from gi.repository import Gtk, Adw, GLib  # type: ignore
 
 
 @time_fn
-@Gtk.Template(resource_path="/org/bredos/bakery/ui/install_screen.ui")
+@Gtk.Template(resource_path="/org/beryllium/bakery/ui/install_screen.ui")
 class install_screen(Adw.Bin):
     __gtype_name__ = "install_screen"
 

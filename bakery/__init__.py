@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,8 +20,8 @@
 from datetime import datetime
 import os
 import locale
-from bredos.translations import setup_translations
-from bredos.logging import (
+from beryllium.translations import setup_translations
+from beryllium.logging import (
     setup_logging,
     setup_handler,
     lp,
@@ -40,7 +40,7 @@ else:
     log_path = "/var/log/"
     log_filename = datetime.now().strftime("BAKERY-%Y-%m-%d-%H-%M-%S.log")
 
-setup_logging("bredos-bakery", log_path, log_filename)
+setup_logging("beryllium-bakery", log_path, log_filename)
 setup_handler()
 lp("Logger started.")
 lp("Dry run = " + str(dryrun))

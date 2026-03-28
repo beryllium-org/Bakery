@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ from bakery.validate import (
     uidc,
     validate_username,
 )
-from bredos.utilities import time_fn
+from beryllium.utilities import time_fn
 
 import gi
 
@@ -34,7 +34,7 @@ from gi.repository import Gtk, Adw  # type: ignore
 
 
 @time_fn
-@Gtk.Template(resource_path="/org/bredos/bakery/ui/user_screen.ui")
+@Gtk.Template(resource_path="/org/beryllium/bakery/ui/user_screen.ui")
 class user_screen(Adw.Bin):
     __gtype_name__ = "user_screen"
 

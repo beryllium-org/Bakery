@@ -1,7 +1,6 @@
-# Timer functions
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -367,8 +366,8 @@ def install(settings=None) -> int:
                 "timezone": {"region": "Europe", "zone": "Sofia", "ntp": True},
                 "hostname": "breborb",
                 "user": {
-                    "fullname": "Bred guy",
-                    "username": "Panda",
+                    "fullname": "Beryl user",
+                    "username": "Bill Sideris",
                     "password": "123",
                     "uid": 1005,
                     "gid": False,

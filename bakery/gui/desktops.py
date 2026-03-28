@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 from bakery import lp, lrun, _
 from bakery.gui.helper import set_margins
 from bakery.packages import get_desktops_list
-from bredos.utilities import time_fn
+from beryllium.utilities import time_fn
 
 import gi
 
@@ -38,7 +38,7 @@ class DesktopItem(GObject.GObject):
 
 
 @time_fn
-@Gtk.Template(resource_path="/org/bredos/bakery/ui/de_screen.ui")
+@Gtk.Template(resource_path="/org/beryllium/bakery/ui/de_screen.ui")
 class de_screen(Adw.Bin):
     __gtype_name__ = "de_screen"
 

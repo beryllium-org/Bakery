@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 from bakery import lp, lrun, _
 from bakery.keyboard import kb_layouts, kb_models, kb_variants
-from bredos.utilities import time_fn
+from beryllium.utilities import time_fn
 import gi
 
 gi.require_version("Gtk", "4.0")
@@ -29,7 +29,7 @@ from gi.repository import Gtk, Adw  # type: ignore
 
 
 @time_fn
-@Gtk.Template(resource_path="/org/bredos/bakery/ui/kb_screen.ui")
+@Gtk.Template(resource_path="/org/beryllium/bakery/ui/kb_screen.ui")
 class kb_screen(Adw.Bin):
     __gtype_name__ = "kb_screen"
 

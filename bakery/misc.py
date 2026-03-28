@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 import subprocess
 from time import sleep
 
-from bredos.utilities import catch_exceptions
+from beryllium.utilities import catch_exceptions
 from bakery import lrun, lp, log_file, dryrun, _
 from bakery import config
 from pyrunning import LoggingLevel
@@ -57,7 +57,7 @@ def copy_logs(new_usern: str, chroot: bool = False, mnt_dir: str = None) -> None
                 "cp",
                 "-v",
                 log_file,
-                mnt_dir + "/home/" + new_usern + "/.bredos/bakery/logs",
+                mnt_dir + "/home/" + new_usern + "/.beryllium/bakery/logs",
             ]
         )
     else:
@@ -65,8 +65,8 @@ def copy_logs(new_usern: str, chroot: bool = False, mnt_dir: str = None) -> None
             [
                 "cp",
                 "-vr",
-                "/root/.bredos",
-                "/home/" + new_usern + "/.bredos",
+                "/root/.beryllium",
+                "/home/" + new_usern + "/.beryllium",
             ]
         )
         subprocess.run(
@@ -74,7 +74,7 @@ def copy_logs(new_usern: str, chroot: bool = False, mnt_dir: str = None) -> None
                 "chown",
                 "-R",
                 new_usern + ":" + new_usern,
-                "/home/" + new_usern + "/.bredos",
+                "/home/" + new_usern + "/.beryllium",
             ]
         )
 

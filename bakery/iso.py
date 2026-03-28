@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ import re
 import tempfile
 
 from bakery import lrun, lp, _, expected_to_fail
-from bredos.utilities import catch_exceptions
+from beryllium.utilities import catch_exceptions
 from .partitioning import mount_partition
 
 
@@ -41,7 +41,7 @@ def grub_install(mnt_dir: str, arch: str = "arm64-efi") -> None:
             f"--target={arch}",
             "--efi-directory=/boot/efi",
             "--removable",
-            "--bootloader-id=BredOS",
+            "--bootloader-id=Beryllium",
         ],
     )
     lp("GRUB installation complete")
@@ -114,7 +114,7 @@ def file_update(file_path: str, comment_keys: list = [], updates: dict = {}):
 def grub_cfg(
     cmdline: str = None,
     dtb: str = None,
-    distribution: str = "BredOS",
+    distribution: str = "Beryllium OS",
     timeout: int = 5,
     update: bool = True,
     chroot: bool = False,

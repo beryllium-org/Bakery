@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ from datetime import datetime
 from bakery import lp, lrun, _
 from bakery.network import geoip
 from bakery.timezone import tz_list
-from bredos.utilities import time_fn
+from beryllium.utilities import time_fn
 
 import gi
 import threading
@@ -34,7 +34,7 @@ from gi.repository import Gtk, Adw, GLib  # type: ignore
 
 
 @time_fn
-@Gtk.Template(resource_path="/org/bredos/bakery/ui/timezone_screen.ui")
+@Gtk.Template(resource_path="/org/beryllium/bakery/ui/timezone_screen.ui")
 class timezone_screen(Adw.Bin):
     __gtype_name__ = "timezone_screen"
 

@@ -145,7 +145,7 @@
                                     <child>
                                       <object class="GtkLabel">
                                         <property name="halign">start</property>
-                                        <property name="label">Bakery will shrink a partition to make space for BredOS.</property>
+                                        <property name="label">Bakery will shrink a partition to make space for Beryllium OS.</property>
                                       </object>
                                     </child>
                                   </object>
@@ -190,7 +190,7 @@
                                     <child>
                                       <object class="GtkLabel">
                                         <property name="halign">start</property>
-                                        <property name="label">Bakery will replace a partition you select with BredOS.</property>
+                                        <property name="label">Bakery will replace a partition you select with Beryllium OS.</property>
                                       </object>
                                     </child>
                                   </object>

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from bredos.utilities import time_fn, detect_device
+from beryllium.utilities import time_fn, detect_device
 from bakery import lp, lrun, _, config
 from bakery.partitioning import (
     check_efi,
@@ -37,7 +37,7 @@ from gi.repository import Gtk, Adw, GLib  # type: ignore
 
 
 @time_fn
-@Gtk.Template(resource_path="/org/bredos/bakery/ui/partitioning_screen.ui")
+@Gtk.Template(resource_path="/org/beryllium/bakery/ui/partitioning_screen.ui")
 class partitioning_screen(Adw.Bin):
     __gtype_name__ = "partitioning_screen"
 
@@ -401,7 +401,7 @@ class partitioning_screen(Adw.Bin):
         if mode == "erase_all":
             self.selectable = False
             self.info_label.set_label(
-                "A new 256MB EFI partition will be created and the rest will be used for BredOS"
+                "A new 256MB EFI partition will be created and the rest will be used for Beryllium OS"
             )
             self.new_partitions = gen_new_partitions(self.partitions, "erase_all")
             self.populate_disk_preview(self.new_partitions, new=True)

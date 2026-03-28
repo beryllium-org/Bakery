@@ -20,9 +20,9 @@ from time import sleep
 from pytz import timezone
 from datetime import datetime
 from babel import dates, numbers
-from bredos import curseapp as c
-from bredos.logging import setup_handler
-from bredos.utilities import detect_device, detect_session_configuration
+from beryllium import curseapp as c
+from beryllium.logging import setup_handler
+from beryllium.utilities import detect_device, detect_session_configuration
 from babel import Locale as bLocale
 from pyrunning import LoggingLevel
 
@@ -360,7 +360,7 @@ def simple_partitioning_mode(sidebar: dict) -> dict | None:
                         f"Device: {selected_device}",
                         "",
                         "WARNING: This will ERASE ALL DATA on the selected drive!",
-                        "A 256MB EFI partition and BredOS root partition will be created.",
+                        "A 256MB EFI partition and Beryllium root partition will be created.",
                         "",
                         "Do you want to continue?",
                     ],
@@ -778,9 +778,9 @@ def main_menu() -> None:
                 sidebar["Welcome"] = True
                 if c.confirm(
                     [
-                        "Welcome to BredOS!",
+                        "Welcome to Beryllium OS!",
                         "",
-                        "Let the Bakery installer whip up the perfect BredOS recipe for your machine!",
+                        "Let the Bakery installer whip up the perfect installation for your machine!",
                         "",
                         "Press Y and Enter to advance with the installation.",
                     ],

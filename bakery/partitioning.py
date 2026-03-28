@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@ import os
 import subprocess
 import tempfile
 from time import sleep
-from bredos.utilities import catch_exceptions
+from beryllium.utilities import catch_exceptions
 import psutil
 from bakery import lrun, lp
 import parted
@@ -168,7 +168,7 @@ def gen_new_partitions(old_partitions: dict, action: str, part_to_replace=None) 
             new_partitions[disk] = [
                 {"EFI": [float(256), 2048, 256 * 1024 * 1024 // sector_size, "fat32"]},
                 {
-                    "BredOS": [
+                    "Beryllium": [
                         int(drive_size) - 257,
                         257 * 1024 * 1024 // sector_size,
                         length - sector_size,
@@ -221,7 +221,7 @@ def gen_new_partitions(old_partitions: dict, action: str, part_to_replace=None) 
                 # Add the root partition
                 new_partitions[disk].append(
                     {
-                        "BredOS": [
+                        "Beryllium": [
                             size - 257,
                             start + (257 * 1024 * 1024 // sector_size),
                             end,
@@ -230,7 +230,7 @@ def gen_new_partitions(old_partitions: dict, action: str, part_to_replace=None) 
                     }
                 )
             else:
-                new_partitions[disk].append({"BredOS": [size, start, end, "btrfs"]})
+                new_partitions[disk].append({"Beryllium": [size, start, end, "btrfs"]})
         # sort the partitions by the start sector
         for disk, partitions in new_partitions.items():
             partitions.sort(key=lambda x: list(x.values())[0][1])
@@ -412,7 +412,7 @@ def rescan_partitions() -> None:
 
 @catch_exceptions
 def partition_disk(partitions: dict) -> None:
-    # {'type': 'guided', 'efi': True, 'disk': '/dev/nvme1n1', 'mode': 'erase_all', 'partitions': {'/dev/nvme1n1': [{'EFI': [256.0, 2048, 524288, 'fat32']}, {'swap': [2048.0, 526336, 4196352, 'swap']}, {'BredOS': [241891, 4198400, 500117680, 'btrfs']}]}}
+    # {'type': 'guided', 'efi': True, 'disk': '/dev/nvme1n1', 'mode': 'erase_all', 'partitions': {'/dev/nvme1n1': [{'EFI': [256.0, 2048, 524288, 'fat32']}, {'swap': [2048.0, 526336, 4196352, 'swap']}, {'Beryllium': [241891, 4198400, 500117680, 'btrfs']}]}}
     # OR
     # {'type': 'manual', 'efi': True, 'disk': '/dev/nvme1n1', 'partitions': {'/dev/nvme1n1p1': {'fs': 'fat32', 'mp': 'Use as boot'}, '/dev/nvme1n1p2': {'fs': 'btrfs', 'mp': 'Use as root'}, '/dev/nvme1n1p3': {'fs': None, 'mp': 'Use as home'}}}
     disk = partitions["disk"]
@@ -446,7 +446,7 @@ def partition_disk(partitions: dict) -> None:
             lp("Partitioning disk: " + disk)
             lp("Creating new GPT partition table")
             lp("Creating EFI partition")
-            lp("Creating BredOS root partition")
+            lp("Creating Beryllium root partition")
             lp("Running parted command: " + " ".join(parted_cmd))
             lrun(parted_cmd)
             sleep(1)

@@ -182,7 +182,7 @@
             - name: xorg-xinput
               description: Tools to configure devices at runtime
         - name: Virtualization (as Guest)
-          description: Run BredOS on a VM
+          description: Run Beryllium OS on a VM
           icon: applications-system-symbolic
           subgroups:
             - name: VirtualBox
@@ -639,7 +639,7 @@
         - name: xorg-xinput
           description: Tools to configure devices at runtime
     - name: Virtualization (as Guest)
-      description: Run BredOS on a VM
+      description: Run Beryllium OS on a VM
       noncheckable: true
       icon: applications-system-symbolic
       subgroups:
@@ -917,7 +917,7 @@
         - name: appimagelauncher
           description: A Helper application for running and integrating AppImages.
     - name: Virtualization (as Host)
-      description: Run VMs on BredOS
+      description: Run VMs on Beryllium OS
       noncheckable: true
       icon: applications-system-symbolic
       subgroups:

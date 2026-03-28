@@ -5,16 +5,16 @@ build-backend = "mesonpy"
 [project]
 name = "bakery"
 version = "1.7.0"
-description = "Bakery the bredos installer"
+description = "Bakery the Beryllium OS installer"
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
 authors = [
-    { name = "Panda", email = "panda@bredos.org" },
+    { name = "Bill Sideris", email = "bill88t@feline.gr" },
 ]
 requires-python = ">=3.13"
 dependencies = [
     "pyrunning",
-    "bredos",
+    "beryllium",
 ]
 
 classifiers = [
@@ -27,6 +27,6 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/BredOS/Bakery"
-Source = "https://github.com/BredOS/Bakery"
-Issues = "https://github.com/BredOS/Bakery/issues"
+Homepage = "https://github.com/beryllium-org/Bakery"
+Source = "https://github.com/beryllium-org/Bakery"
+Issues = "https://github.com/beryllium-org/Bakery/issues"

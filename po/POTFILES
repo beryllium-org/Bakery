@@ -1,6 +1,6 @@
-data/org.bredos.bakery.desktop.in
-data/org.bredos.bakery.appdata.xml.in
-data/org.bredos.bakery.gschema.xml
+data/org.beryllium.bakery.desktop.in
+data/org.beryllium.bakery.appdata.xml.in
+data/org.beryllium.bakery.gschema.xml
 bakery-cli.py
 config.py
 bakery.py

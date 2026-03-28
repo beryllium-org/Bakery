@@ -17,11 +17,11 @@ msgstr ""
 "X-Crowdin-File: /main/po/bakery.pot\n"
 "X-Crowdin-File-ID: 6\n"
 
-#: data/org.bredos.bakery.desktop.in:3 bakery-gui.py:99 data/window.ui:11
-msgid "BredOS Installer"
-msgstr "BredOS Telepítő"
+#: data/org.beryllium.bakery.desktop.in:3 bakery-gui.py:99 data/window.ui:11
+msgid "Beryllium OS Installer"
+msgstr "Beryllium OS Telepítő"
 
-#: data/org.bredos.bakery.appdata.xml.in:7
+#: data/org.beryllium.bakery.appdata.xml.in:7
 msgid "No description"
 msgstr "Nincs leírás"
 
@@ -87,11 +87,11 @@ msgid "translator-credits"
 msgstr ""
 
 #: bakery-gui.py:107
-msgid "Copyright The BredOS developers"
-msgstr "Copyright The BredOS developers"
+msgid "Copyright The Beryllium OS developers"
+msgstr "Copyright The Beryllium OS developers"
 
 #: bakery-gui.py:108
-msgid "Bakery is a simple installer for BredOS"
+msgid "Bakery is a simple installer for Beryllium OS"
 msgstr ""
 
 #: bakery-gui.py:113
@@ -125,11 +125,11 @@ msgstr ""
 
 #. Do not translate literally, come up with a bread/baking related pun that works in the target language. Try to keep the idea that the installer will lead the way
 #: data/window.ui:92
-msgid "Let the Bakery installer whip up the perfect BredOS recipe for your machine!"
+msgid "Let the Bakery installer whip up the perfect Beryllium OS recipe for your machine!"
 msgstr ""
 
 #: data/window.ui:93
-msgid "Welcome to BredOS!"
+msgid "Welcome to Beryllium OS!"
 msgstr ""
 
 #: data/window.ui:129
@@ -305,7 +305,7 @@ msgid "Please standby while installation is in progress"
 msgstr ""
 
 #: data/install_screen.ui:10
-msgid "Installing BredOS"
+msgid "Installing Beryllium OS"
 msgstr ""
 
 #: data/finish_screen.ui:9

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ def generate_gresource() -> None:
     from subprocess import run
 
     run(
-        ["glib-compile-resources", "org.bredos.bakery.gresource.xml"],
+        ["glib-compile-resources", "org.beryllium.bakery.gresource.xml"],
         cwd=path.join(script_path, "data"),
     )
 
@@ -44,7 +44,7 @@ def set_resources() -> None:
     if not script_path.startswith("/usr/"):
         generate_gresource()
     resource: Gio.Resource = Gio.Resource.load(
-        path.join(script_path, "data", "org.bredos.bakery.gresource")
+        path.join(script_path, "data", "org.beryllium.bakery.gresource")
     )
     Gio.Resource._register(resource)
 
@@ -53,5 +53,5 @@ if __name__ == "__main__":
     set_resources()
     from bakery.gui.main import BakeryApp
 
-    app = BakeryApp(application_id="org.bredos.bakery")
+    app = BakeryApp(application_id="org.beryllium.bakery")
     app.run(argv)

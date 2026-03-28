@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 import os
 import subprocess
-from bredos.utilities import catch_exceptions
+from beryllium.utilities import catch_exceptions
 import yaml
 from bakery import lrun, lp, expected_to_fail
 from bakery.network import internet_up
@@ -78,7 +78,7 @@ def get_packages_list() -> dict:
     Returns netinstall list of packages.
     """
 
-    data_bytes = Gio.resources_lookup_data("/org/bredos/bakery/packages.yaml", 0)
+    data_bytes = Gio.resources_lookup_data("/org/beryllium/bakery/packages.yaml", 0)
 
     return yaml.safe_load(data_bytes.get_data().decode("utf-8"))
 
@@ -89,7 +89,7 @@ def get_desktops_list() -> dict:
     Returns desktop list of packages.
     """
 
-    data_bytes = Gio.resources_lookup_data("/org/bredos/bakery/desktops.yaml", 0)
+    data_bytes = Gio.resources_lookup_data("/org/beryllium/bakery/desktops.yaml", 0)
 
     return yaml.safe_load(data_bytes.get_data().decode("utf-8"))
 

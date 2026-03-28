@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,8 +22,8 @@ from time import sleep
 
 from bakery import config, lp, lrun, _, log_file
 from bakery.misc import upload_log, reboot, detect_install_source
-from bredos.logging import setup_handler
-from bredos.utilities import (
+from beryllium.logging import setup_handler
+from beryllium.utilities import (
     debounce,
     detect_device,
     detect_session_configuration,
@@ -83,29 +83,31 @@ class BakeryApp(Adw.Application):
         """Callback for the app.about action."""
         about = Adw.AboutWindow(
             transient_for=self.props.active_window,
-            application_name=_("BredOS Installer"),  # pyright: ignore[reportCallIssue]
-            application_icon="org.bredos.bakery",
-            developer_name="BredOS",
+            application_name=_(
+                "Beryllium OS Installer"
+            ),  # pyright: ignore[reportCallIssue]
+            application_icon="org.beryllium.bakery",
+            developer_name="Beryllium OS",
             debug_info=self.win.collect_data(show_pass=False),
             version=config.installer_version,
-            developers=["Panda <panda@bredos.org>", "bill88t <bill88t@bredos.org>"],
+            developers=["Bill Sideris <bill88t@feline.gr>", "Panda <panda@bredos.org>"],
             designers=["Panda <panda@bredos.org>", "DustyDaimler"],
             documenters=["Panda <panda@bredos.org>", "DroidMaster"],
             translator_credits=_(
                 "translator-credits"
             ),  # pyright: ignore[reportCallIssue]
             copyright=_(
-                "Copyright The BredOS developers"
+                "Copyright The Beryllium OS developers"
             ),  # pyright: ignore[reportCallIssue]
             comments=_(
-                "Bakery is a simple installer for BredOS"
+                "Bakery is a simple installer for Beryllium OS"
             ),  # pyright: ignore[reportCallIssue]
             license_type=Gtk.License.GPL_3_0,
-            website="https://BredOS.org",
-            issue_url="https://github.com/BredOS/Bakery/issues",
-            support_url="https://discord.gg/jwhxuyKXaa",
+            website="https://beryllium.gr",
+            issue_url="https://github.com/beryllium-org/Bakery/issues",
+            support_url="https://discord.gg/Zzvzf4BBTG",
         )
-        translators = ["Bill88t  <bill88t@bredos.org>", "Panda <panda@bredos.org>"]
+        translators = ["Bill Sideris <bill88t@feline.gr>"]
         about.add_credit_section(
             _("Translated by"), translators
         )  # pyright: ignore[reportCallIssue]
@@ -134,7 +136,7 @@ class BakeryApp(Adw.Application):
         css_provider = Gtk.CssProvider()
         try:
             css_provider.load_from_resource(
-                resource_path="/org/bredos/bakery/ui/main.css"
+                resource_path="/org/beryllium/bakery/ui/main.css"
             )
         except GLib.Error as e:
             lp(f"Error loading CSS : {e} ", mode="error")
@@ -151,7 +153,7 @@ class BakeryApp(Adw.Application):
             )
 
 
-@Gtk.Template(resource_path="/org/bredos/bakery/ui/window.ui")
+@Gtk.Template(resource_path="/org/beryllium/bakery/ui/window.ui")
 class BakeryWindow(Adw.ApplicationWindow):
     __gtype_name__ = "BakeryWindow"
 

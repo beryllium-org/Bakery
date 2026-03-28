@@ -17,13 +17,13 @@ msgstr ""
 "X-Crowdin-File: /main/po/bakery.pot\n"
 "X-Crowdin-File-ID: 6\n"
 
-#: data/org.bredos.bakery.desktop.in:3 bakery-gui.py:100 data/window.ui:11
-msgid "BredOS Installer"
-msgstr "Πρόγραμμα Εγκατάστασης BredOS"
+#: data/org.beryllium.bakery.desktop.in:3 bakery-gui.py:100 data/window.ui:11
+msgid "Beryllium OS Installer"
+msgstr "Πρόγραμμα Εγκατάστασης Beryllium OS"
 
-#: data/org.bredos.bakery.appdata.xml.in:7 bakery-gui.py:109
-msgid "Bakery is a simple installer for BredOS"
-msgstr "Το Bakery είναι το πρόγραμμα εγκατάστασης για το BredOS"
+#: data/org.beryllium.bakery.appdata.xml.in:7 bakery-gui.py:109
+msgid "Bakery is a simple installer for Beryllium OS"
+msgstr "Το Bakery είναι το πρόγραμμα εγκατάστασης για το Beryllium OS"
 
 #: config.py:11
 msgid "Keyboard"
@@ -87,8 +87,8 @@ msgid "translator-credits"
 msgstr "transator-credits"
 
 #: bakery-gui.py:108
-msgid "Copyright The BredOS developers"
-msgstr "Πνευματικά δικαιώματα, Οι προγραμματιστές του BredOS"
+msgid "Copyright The Beryllium OS developers"
+msgstr "Πνευματικά δικαιώματα, Οι προγραμματιστές του Beryllium OS"
 
 #: bakery-gui.py:114
 msgid "Translated by"
@@ -121,12 +121,12 @@ msgstr "Προσαρμοσμένη Εγκατάσταση"
 
 #. Do not translate literally, come up with a bread/baking related pun that works in the target language. Try to keep the idea that the installer will lead the way
 #: data/window.ui:92
-msgid "Let the Bakery installer whip up the perfect BredOS recipe for your machine!"
-msgstr "Αφήστε τον εγκαταστάτη του Αρτοποιείου να σηκώσει την τέλεια συνταγή BredOS για το μηχάνημά σας!"
+msgid "Let the Bakery installer whip up the perfect Beryllium OS recipe for your machine!"
+msgstr "Αφήστε τον εγκαταστάτη του Αρτοποιείου να σηκώσει την τέλεια συνταγή Beryllium OS για το μηχάνημά σας!"
 
 #: data/window.ui:93
-msgid "Welcome to BredOS!"
-msgstr "Καλώς ήλθατε στο BredOS!"
+msgid "Welcome to Beryllium OS!"
+msgstr "Καλώς ήλθατε στο Beryllium OS!"
 
 #: data/window.ui:129
 msgctxt "Button\n"
@@ -324,8 +324,8 @@ msgid "Please standby while installation is in progress"
 msgstr "Παρακαλώ περιμένετε όσο η εγκατάσταση βρίσκεται σε εξέλιξη"
 
 #: data/install_screen.ui:10
-msgid "Installing BredOS"
-msgstr "Εγκατάσταση BredOS"
+msgid "Installing Beryllium OS"
+msgstr "Εγκατάσταση Beryllium OS"
 
 #: data/finish_screen.ui:9
 msgid "Installation Complete!"

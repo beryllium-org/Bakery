@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 import os
 import subprocess
-from bredos.utilities import catch_exceptions
+from beryllium.utilities import catch_exceptions
 from bakery import lrun, lp, _
 
 _kbmodelmap = {

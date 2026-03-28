@@ -1,11 +1,11 @@
 # Maintainer: Bill Sideris <bill88t@feline.gr>
 pkgname=('bakery' 'bakery-gui' 'bakery-tui')
 pkgbase="bakery"
-pkgver=1.3.3
-pkgrel=4
-pkgdesc="BredOS Installer"
+pkgver=1.4.0
+pkgrel=1
+pkgdesc="Beryllium OS Installer"
 arch=('any')
-url="https://github.com/BredOS/Bakery"
+url="https://github.com/beryllium-org/Bakery"
 license=('GPL3')
 options=('!strip')
 source=()
@@ -21,14 +21,14 @@ prepare() {
 build() {
         cd "$srcdir/$pkgbase/data"
         echo "Compiling gresources.."
-        glib-compile-resources org.bredos.bakery.gresource.xml
+        glib-compile-resources org.beryllium.bakery.gresource.xml
         cd ..
         meson setup build --prefix=/usr
 }
 
 package_bakery() {
         cd "$srcdir/$pkgbase/build"
-        depends=('gobject-introspection' 'gobject-introspection-runtime' 'python-gobject' 'python-pyrunning' 'python-toml' 'python-requests' 'python-pyparted' 'arch-install-scripts' 'bakery-device-tweaks' 'python-yaml' 'appstream-glib' 'archlinux-appstream-data' 'python-bredos-common>=1.9.0')
+        depends=('gobject-introspection' 'gobject-introspection-runtime' 'python-gobject' 'python-pyrunning' 'python-toml' 'python-requests' 'python-pyparted' 'arch-install-scripts' 'bakery-device-tweaks' 'python-yaml' 'appstream-glib' 'archlinux-appstream-data' 'python-beryllium-common>=1.11.0')
         DESTDIR="$pkgdir" meson install -q
         rm -r "$pkgdir/usr/share/bakery/bakery-"{gui,tui}".py" \
               "$pkgdir/usr/lib/python3.14/site-packages/bakery/"{gui/,tui/,__pycache__/} \

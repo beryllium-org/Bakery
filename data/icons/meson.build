@@ -1,4 +1,4 @@
-application_id = 'org.bredos.bakery'
+application_id = 'org.beryllium.bakery'
 
 scalable_dir = join_paths('hicolor', 'scalable', 'apps')
 install_data(

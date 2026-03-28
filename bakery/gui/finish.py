@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2025 BredOS
+# Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from bakery import lp, lrun, _, log_file
-from bredos.utilities import time_fn
+from beryllium.utilities import time_fn
 
 import gi
 
@@ -28,7 +28,7 @@ from gi.repository import Gtk, Adw, Gio, Gdk, GLib, Pango  # type: ignore
 
 
 @time_fn
-@Gtk.Template(resource_path="/org/bredos/bakery/ui/finish_screen.ui")
+@Gtk.Template(resource_path="/org/beryllium/bakery/ui/finish_screen.ui")
 class finish_screen(Adw.Bin):
     __gtype_name__ = "finish_screen"
 
