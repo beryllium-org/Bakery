@@ -247,7 +247,7 @@
     </responses>
   </object>
   <object class="AdwMessageDialog" id="err_dialog">
-    <property name="body" translatable="yes" context="Do not translate &lt;a href=&quot;https://discord.gg/jwhxuyKXaa&quot;&gt;https://discord.gg/jwhxuyKXaa&lt;/a&gt;">An error occurred during installation. Do you want to upload the log file, so you can easily report the issue in our discord? &lt;a href="https://discord.gg/jwhxuyKXaa"&gt;https://discord.gg/jwhxuyKXaa&lt;/a&gt;</property>
+    <property name="body" translatable="yes" context="Do not translate &lt;a href=&quot;https://discord.gg/Zzvzf4BBTG&quot;&gt;https://discord.gg/Zzvzf4BBTG&lt;/a&gt;">An error occurred during installation. Do you want to upload the log file, so you can easily report the issue in our discord? &lt;a href="https://discord.gg/Zzvzf4BBTG"&gt;https://discord.gg/Zzvzf4BBTG&lt;/a&gt;</property>
     <property name="body-use-markup">True</property>
     <property name="close-response">no</property>
     <property name="default-response">no</property>
