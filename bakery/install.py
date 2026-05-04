@@ -96,8 +96,6 @@ def final_setup(settings, mnt_dir: str = None) -> None:
             ]
         )
     elif settings["install_type"]["source"] == "from_iso":
-        cfg = load_config()
-
         if settings["install_type"]["type"] == "offline":
             enable_services(
                 [

@@ -209,10 +209,10 @@ sbcs = [
 ]
 
 iso_packages_to_remove = [
-    "bakery-device-tweaks",
     "bakery-gui",
     "bakery-tui",
     "bakery",
+    "bakery-device-tweaks",
     "mkinitcpio-archiso",
     "mkinitcpio-nfs-utils",
 ]
