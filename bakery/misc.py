@@ -17,7 +17,9 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import os
 import subprocess
+from datetime import datetime
 from time import sleep
 
 from beryllium.utilities import catch_exceptions
@@ -26,6 +28,28 @@ from bakery import config
 from pyrunning import LoggingLevel
 
 st_msgs = []
+
+# Marker file written after a successful on_device (image first-boot)
+# install completes. Presence of this file means Bakery has already
+# finalized the system and must not be re-run.
+INSTALLED_MARKER = "/var/lib/bakery/installed"
+
+
+def is_installed() -> bool:
+    """Return True if Bakery has already finalized this system."""
+    return os.path.exists(INSTALLED_MARKER)
+
+
+@catch_exceptions
+def mark_installed() -> None:
+    """Touch the marker file used to refuse subsequent runs."""
+    if dryrun:
+        lp("Would have marked the system as installed.")
+        return
+    os.makedirs(os.path.dirname(INSTALLED_MARKER), exist_ok=True)
+    with open(INSTALLED_MARKER, "w") as fd:
+        fd.write(datetime.utcnow().isoformat() + "Z\n")
+    lp("System marked as installed: " + INSTALLED_MARKER)
 
 
 @catch_exceptions

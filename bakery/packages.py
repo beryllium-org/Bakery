@@ -58,6 +58,41 @@ def remove_packages(packages: list, chroot: bool = False, mnt_dir: str = None) -
             lrun(cmd, postrunfn=expected_to_fail)
 
 
+# Bakery package family to be pruned from a freshly installed image
+# after a successful on_device (first-boot) run. Order matters: the UI
+# leaf packages must be removed before the base "bakery" package, and
+# "bakery-device-tweaks" must come last because the base bakery package
+# depends on it (removing it earlier would break pacman dependencies).
+# pacman -Rns bakery itself will pull bakery-device-tweaks as an orphan,
+# so the explicit final entry is a belt-and-braces no-op on most flavors.
+SELF_PACKAGES = [
+    "bakery-gui",
+    "bakery-tui",
+    "bakery",
+    "bakery-device-tweaks",
+]
+
+
+@catch_exceptions
+def self_prune() -> None:
+    """Uninstall the Bakery package family from the running system.
+
+    Called at the end of an on_device install (image first-boot flow)
+    so Bakery does not linger on the freshly provisioned system. Each
+    package is removed individually with -Rns; failures are tolerated
+    (e.g. when a package is absent on a given image flavor).
+    """
+    from bakery import dryrun
+
+    if dryrun:
+        lp("Would have self-pruned: " + " ".join(SELF_PACKAGES))
+        return
+    for package in SELF_PACKAGES:
+        cmd = ["pacman", "-Rns", "--noconfirm", package]
+        lp("Self-pruning package: " + package)
+        lrun(cmd, postrunfn=expected_to_fail)
+
+
 @catch_exceptions
 def ensure_localdb(retries: int = 3) -> None:
     if not internet_up():

@@ -17,8 +17,21 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import sys
+
 from bakery import dryrun
+from bakery.misc import INSTALLED_MARKER, is_installed
 from bakery.tui.main import main_menu, check_root, c
+
+
+def refuse_if_installed() -> None:
+    if (not dryrun) and is_installed():
+        print(
+            "Bakery has already finalized this system "
+            "(" + INSTALLED_MARKER + " present); refusing to run.",
+            file=sys.stderr,
+        )
+        sys.exit(0)
 
 
 def main() -> None:
@@ -32,4 +45,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     check_root()
+    refuse_if_installed()
     main()
