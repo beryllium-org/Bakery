@@ -249,12 +249,24 @@ def regenerate_initramfs(mnt_dir: str) -> None:
     # in the airootfs) prefer it over mkinitcpio. Older ISOs that only have
     # mkinitcpio still take the legacy path so this stays backward compatible.
     if os.path.isfile(mnt_dir + "/usr/bin/dracut"):
-        lp("Regenerating initramfs with dracut")
-        run_chroot_cmd(
-            mnt_dir,
-            ["dracut", "--regenerate-all", "--force"],
-            postrunfn=expected_to_fail,
-        )
+        # Prefer the Beryllium-shipped `dracut-rebuild` helper when present
+        # (it wraps /usr/share/libalpm/scripts/dracut-install which Beryllium
+        # patches for grub.d compatibility). Fall back to plain dracut
+        # otherwise so this stays compatible with bare upstream dracut.
+        if os.path.isfile(mnt_dir + "/usr/bin/dracut-rebuild"):
+            lp("Regenerating initramfs with dracut-rebuild")
+            run_chroot_cmd(
+                mnt_dir,
+                ["dracut-rebuild"],
+                postrunfn=expected_to_fail,
+            )
+        else:
+            lp("Regenerating initramfs with dracut")
+            run_chroot_cmd(
+                mnt_dir,
+                ["dracut", "--regenerate-all", "--force"],
+                postrunfn=expected_to_fail,
+            )
         # Drop the static-named mkinitcpio image copied from the live ISO so
         # GRUB does not pick the stale one.
         for stale in ("initramfs-linux.img", "initramfs-linux-fallback.img"):
