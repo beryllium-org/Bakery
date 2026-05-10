@@ -21,12 +21,26 @@ import faulthandler
 
 faulthandler.enable()
 
+import sys
 from sys import argv
 from os import path
 
 from gi.repository import Gio
 
+from bakery import dryrun
+from bakery.misc import INSTALLED_MARKER, is_installed
+
 script_path: str = path.dirname(path.realpath(__file__))
+
+
+def refuse_if_installed() -> None:
+    if (not dryrun) and is_installed():
+        print(
+            "Bakery has already finalized this system "
+            "(" + INSTALLED_MARKER + " present); refusing to run.",
+            file=sys.stderr,
+        )
+        sys.exit(0)
 
 
 def generate_gresource() -> None:
@@ -50,6 +64,7 @@ def set_resources() -> None:
 
 
 if __name__ == "__main__":
+    refuse_if_installed()
     set_resources()
     from bakery.gui.main import BakeryApp
 

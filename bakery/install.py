@@ -36,8 +36,8 @@ from .iso import (
 )
 from .keyboard import kb_set
 from .locale import enable_locales, set_locale
-from .misc import is_sbc, copy_logs, populate_messages, st
-from .packages import remove_packages
+from .misc import is_sbc, copy_logs, mark_installed, populate_messages, st
+from .packages import remove_packages, self_prune
 from .partitioning import mount_all_partitions, partition_disk, unmount_all
 from .timezone import tz_ntp, tz_set
 from .validate import gidc, shells, uidc
@@ -551,6 +551,12 @@ def install(settings=None) -> int:
             lp("Took {:.5f}".format(get_timer()))
             st(7)  # Cleanup
             reset_timer()
+
+            # On_device (image first-boot) is one-shot: mark the system
+            # as installed and uninstall the Bakery package family so
+            # the installer does not run again on this system.
+            mark_installed()
+            self_prune()
 
             # Done
             lp(
