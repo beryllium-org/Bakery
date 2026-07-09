@@ -87,7 +87,7 @@ msgid "translator-credits"
 msgstr ""
 
 #: bakery-gui.py:108
-msgid "Copyright The Beryllium OS developers"
+msgid "Copyright The BredOS & Beryllium OS developers"
 msgstr ""
 
 #: bakery-gui.py:114
@@ -121,7 +121,7 @@ msgstr ""
 
 #. Do not translate literally, come up with a bread/baking related pun that works in the target language. Try to keep the idea that the installer will lead the way
 #: data/window.ui:92
-msgid "Let the Bakery installer whip up the perfect Beryllium OS recipe for your machine!"
+msgid "Let the Bakery installer whip up the perfect BredOS & Beryllium OS recipe for your machine!"
 msgstr ""
 
 #: data/window.ui:93

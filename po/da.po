@@ -87,8 +87,8 @@ msgid "translator-credits"
 msgstr "oversætter-kreditter"
 
 #: bakery-gui.py:108
-msgid "Copyright The Beryllium OS developers"
-msgstr "Ophavsret Beryllium OS-udviklerne"
+msgid "Copyright The BredOS & Beryllium OS developers"
+msgstr "Ophavsret BredOS & Beryllium OS-udviklerne"
 
 #: bakery-gui.py:114
 msgid "Translated by"

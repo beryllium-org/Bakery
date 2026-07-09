@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 #
+# Copyright 2025 BredOS
 # Copyright 2026 Beryllium OS
 #
 # This program is free software: you can redistribute it and/or modify
