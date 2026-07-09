@@ -33,6 +33,7 @@ from .iso import (
     grub_install,
     regenerate_initramfs,
     run_chroot_cmd,
+    take_initial_snapshot,
     unpack_sqfs,
 )
 from .keyboard import kb_set
@@ -619,6 +620,15 @@ def install(settings=None) -> int:
                 lp("Took {:.5f}".format(get_timer()))
                 st(6)  # Grub
                 reset_timer()
+                # Wire up the Plymouth splash on the installed system.
+                # update=False because grub_install runs grub-mkconfig
+                # right after this and would do a redundant pass otherwise.
+                grub_cfg(
+                    cmdline_append="splash quiet",
+                    update=False,
+                    chroot=True,
+                    mnt_dir=mnt_dir,
+                )
                 # Install grub
                 grub_install(mnt_dir, arch=grub_arch)
 
@@ -706,6 +716,10 @@ def install(settings=None) -> int:
                 reset_timer()
 
                 final_setup(settings, mnt_dir)
+
+                # Best-effort baseline snapper snapshot. No-op without
+                # snapper installed or a btrfs root.
+                take_initial_snapshot(mnt_dir)
 
                 unmount_all(mnt_dir)
 

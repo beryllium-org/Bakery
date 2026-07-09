@@ -111,9 +111,28 @@ def file_update(file_path: str, comment_keys: list = [], updates: dict = {}):
     return True
 
 
+def _read_grub_value(file_path: str, key: str):
+    """Return the unquoted value of `key` in /etc/default/grub-style files."""
+    if not os.path.isfile(file_path):
+        return None
+    pat = re.compile(
+        r"^\s*#?\s*" + re.escape(key) + r"\s*=\s*\"?(.*?)\"?\s*$"
+    )
+    try:
+        with open(file_path, "r") as f:
+            for line in f:
+                m = pat.match(line)
+                if m:
+                    return m.group(1)
+    except Exception as e:
+        lp(f"Error reading {file_path}: {e}")
+    return None
+
+
 @catch_exceptions
 def grub_cfg(
     cmdline: str = None,
+    cmdline_append: str = None,
     dtb: str = None,
     distribution: str = "Beryllium OS",
     timeout: int = 5,
@@ -129,6 +148,19 @@ def grub_cfg(
     if cmdline is not None:
         lp(f'Setting cmdline to "{cmdline}"')
         updates["GRUB_CMDLINE_LINUX_DEFAULT"] = f'"{cmdline}"'
+    elif cmdline_append:
+        existing = _read_grub_value(grubpath, "GRUB_CMDLINE_LINUX_DEFAULT") or ""
+        merged = (existing + " " + cmdline_append).strip()
+        # Dedup so re-running Bakery does not double-append.
+        seen = set()
+        deduped = []
+        for tok in merged.split():
+            if tok not in seen:
+                seen.add(tok)
+                deduped.append(tok)
+        merged = " ".join(deduped)
+        lp(f'Appending to cmdline: "{cmdline_append}" (final: "{merged}")')
+        updates["GRUB_CMDLINE_LINUX_DEFAULT"] = f'"{merged}"'
 
     if dtb is not None:
         if dtb:
@@ -214,17 +246,49 @@ def copy_kern_from_iso(mnt_dir: str) -> None:
 
 @catch_exceptions
 def regenerate_initramfs(mnt_dir: str) -> None:
-    # mnt_dir/etc/mkinitcpio.conf.bak -> mnt_dir/etc/mkinitcpio.conf
-    lrun(
-        [
-            "mv",
-            mnt_dir + "/etc/mkinitcpio.conf.bak",
-            mnt_dir + "/etc/mkinitcpio.conf",
-        ]
-    )
-    lp("Regenerating initramfs")
+    # When dracut is present in the target (newer Beryllium ISOs ship it
+    # in the airootfs) prefer it over mkinitcpio. Older ISOs that only have
+    # mkinitcpio still take the legacy path so this stays backward compatible.
+    if os.path.isfile(mnt_dir + "/usr/bin/dracut"):
+        # Prefer the Beryllium-shipped `dracut-rebuild` helper when present
+        # (it wraps /usr/share/libalpm/scripts/dracut-install which Beryllium
+        # patches for grub.d compatibility). Fall back to plain dracut
+        # otherwise so this stays compatible with bare upstream dracut.
+        if os.path.isfile(mnt_dir + "/usr/bin/dracut-rebuild"):
+            lp("Regenerating initramfs with dracut-rebuild")
+            run_chroot_cmd(
+                mnt_dir,
+                ["dracut-rebuild"],
+                postrunfn=expected_to_fail,
+            )
+        else:
+            lp("Regenerating initramfs with dracut")
+            run_chroot_cmd(
+                mnt_dir,
+                ["dracut", "--regenerate-all", "--force"],
+                postrunfn=expected_to_fail,
+            )
+        # Drop the static-named mkinitcpio image copied from the live ISO so
+        # GRUB does not pick the stale one.
+        for stale in ("initramfs-linux.img", "initramfs-linux-fallback.img"):
+            stale_path = mnt_dir + "/boot/" + stale
+            if os.path.isfile(stale_path):
+                os.remove(stale_path)
+        lp("Initramfs regeneration complete (dracut)")
+        return
+
+    # mkinitcpio fallback.
+    if os.path.isfile(mnt_dir + "/etc/mkinitcpio.conf.bak"):
+        lrun(
+            [
+                "mv",
+                mnt_dir + "/etc/mkinitcpio.conf.bak",
+                mnt_dir + "/etc/mkinitcpio.conf",
+            ]
+        )
+    lp("Regenerating initramfs with mkinitcpio")
     run_chroot_cmd(mnt_dir, ["mkinitcpio", "-P"], postrunfn=expected_to_fail)
-    lp("Initramfs regeneration complete")
+    lp("Initramfs regeneration complete (mkinitcpio)")
 
 
 @catch_exceptions
@@ -256,3 +320,29 @@ def generate_fstab(mnt_dir: str) -> None:
         f.writelines(updated_lines)
 
     lp("Fstab generated")
+
+
+@catch_exceptions
+def take_initial_snapshot(mnt_dir: str) -> None:
+    """Best-effort initial snapper baseline. No-op without snapper or btrfs."""
+    if not os.path.isfile(mnt_dir + "/usr/bin/snapper"):
+        return
+    lp("Setting up snapper baseline snapshot")
+    # create-config requires a btrfs root; on other filesystems it errors out
+    # and we just skip. Silence both calls so a non-btrfs install does not
+    # spam the log.
+    run_chroot_cmd(
+        mnt_dir,
+        ["sh", "-c", "snapper -c root create-config / >/dev/null 2>&1 || true"],
+    )
+    run_chroot_cmd(
+        mnt_dir,
+        [
+            "sh",
+            "-c",
+            "snapper -c root create -d 'Initial install' "
+            ">/dev/null 2>&1 || true",
+        ],
+    )
+    lp("Initial snapshot done (best-effort)")
+
