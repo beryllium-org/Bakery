@@ -80,7 +80,14 @@ def final_setup(settings, mnt_dir: str = None) -> None:
     if settings["install_type"]["source"] == "on_device":
         lrun(["systemctl", "disable", "resizefs.service"], silent=True)
         enable_services(
-            ["bluetooth.service", "fstrim.timer", "oemcleanup.service", "cups.socket"],
+            [
+                "bluetooth.service",
+                "fstrim.timer",
+                "oemcleanup.service",
+                "cups.socket",
+                "snapper-timeline.timer",
+                "snapper-cleanup.timer",
+            ],
         )
         if (
             settings["session_configuration"]["dm"] == "gdm"
@@ -98,16 +105,48 @@ def final_setup(settings, mnt_dir: str = None) -> None:
         )
     elif settings["install_type"]["source"] == "from_iso":
         if settings["install_type"]["type"] == "offline":
-            enable_services(
-                [
-                    "bluetooth.service",
-                    "fstrim.timer",
-                    "oemcleanup.service",
-                    "cups.socket",
-                ],
-                chroot=True,
-                mnt_dir=mnt_dir,
-            )
+            # The airootfs carries a btrfs snapper config and enabled
+            # snapper timers. Snapper can only snapshot btrfs, so on an
+            # ext4 root we must not enable the timers, and we strip the
+            # copied config so nothing later tries to use it.
+            root_fs = "btrfs"
+            try:
+                with open("/proc/self/mounts") as f:
+                    for line in f:
+                        parts = line.split()
+                        if len(parts) > 2 and parts[1] == mnt_dir:
+                            root_fs = parts[2]
+                            break
+            except OSError:
+                lp("Could not read /proc/self/mounts, assuming btrfs root")
+            snapper_units = ["snapper-timeline.timer", "snapper-cleanup.timer"]
+            if root_fs == "btrfs":
+                enable_services(
+                    [
+                        "bluetooth.service",
+                        "fstrim.timer",
+                        "oemcleanup.service",
+                        "cups.socket",
+                    ]
+                    + snapper_units,
+                    chroot=True,
+                    mnt_dir=mnt_dir,
+                )
+            else:
+                lp("Root filesystem is " + root_fs + "; skipping snapper (btrfs only)")
+                lrun(
+                    [
+                        "rm",
+                        "-f",
+                        mnt_dir + "/etc/snapper/configs/root",
+                        mnt_dir + "/etc/conf.d/snapper",
+                    ]
+                    + [
+                        mnt_dir + "/etc/systemd/system/timers.target.wants/" + u
+                        for u in snapper_units
+                    ],
+                    silent=True,
+                )
             if (
                 settings["session_configuration"]["dm"] == "gdm"
                 and settings["user"]["autologin"] == True
