@@ -2,7 +2,7 @@
 pkgname=('bakery' 'bakery-gui' 'bakery-tui')
 pkgbase="bakery"
 pkgver=1.4.3
-pkgrel=1
+pkgrel=2
 pkgdesc="Beryllium OS Installer"
 arch=('any')
 url="https://github.com/beryllium-org/Bakery"
@@ -28,7 +28,7 @@ build() {
 
 package_bakery() {
         cd "$srcdir/$pkgbase/build"
-        depends=('gobject-introspection' 'gobject-introspection-runtime' 'python-gobject' 'python-pyrunning' 'python-toml' 'python-requests' 'python-pyparted' 'arch-install-scripts' 'bakery-device-tweaks' 'python-yaml' 'appstream-glib' 'archlinux-appstream-data' 'python-beryllium-common>=1.11.0')
+        depends=('gobject-introspection' 'gobject-introspection-runtime' 'python-gobject' 'python-pyrunning' 'python-toml' 'python-requests' 'python-pyparted' 'arch-install-scripts' 'bakery-device-tweaks' 'python-yaml' 'appstream-glib' 'appstream' 'archlinux-appstream-data' 'python-beryllium-common>=1.11.0')
         DESTDIR="$pkgdir" meson install -q
         rm -r "$pkgdir/usr/share/bakery/bakery-"{gui,tui}".py" \
               "$pkgdir/usr/lib/python3.14/site-packages/bakery/"{gui/,tui/,__pycache__/} \
