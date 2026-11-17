@@ -1,8 +1,8 @@
 # Maintainer: Bill Sideris <bill88t@feline.gr>
 pkgname=('bakery' 'bakery-gui' 'bakery-tui')
 pkgbase="bakery"
-pkgver=1.4.3
-pkgrel=2
+pkgver=1.5.0
+pkgrel=1
 pkgdesc="Beryllium OS Installer"
 arch=('any')
 url="https://github.com/beryllium-org/Bakery"

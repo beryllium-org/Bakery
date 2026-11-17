@@ -48,6 +48,34 @@ def install_packages(packages: list, chroot: bool = False, mnt_dir: str = None) 
 
 
 @catch_exceptions
+def nvidia_autoinstall(mnt_dir: str) -> None:
+    """
+    Detects NVIDIA GPUs and installs the proprietary drivers into mnt_dir.
+    Used by ISO installs, where the drivers are not shipped on the image
+    to keep it under the 2GiB release asset limit.
+    """
+    found = False
+    try:
+        for dev in os.listdir("/sys/bus/pci/devices"):
+            base = "/sys/bus/pci/devices/" + dev
+            with open(base + "/vendor") as f:
+                vendor = f.read().strip()
+            with open(base + "/class") as f:
+                cls = f.read().strip()
+            if vendor == "0x10de" and cls.startswith("0x03"):
+                found = True
+                break
+    except OSError as e:
+        lp("Could not detect GPU hardware: " + str(e), mode="warn")
+        return
+    if not found:
+        lp("No NVIDIA GPU detected, skipping driver install")
+        return
+    lp("NVIDIA GPU detected, installing drivers")
+    install_packages(["nvidia-open", "nvidia-utils"], chroot=True, mnt_dir=mnt_dir)
+
+
+@catch_exceptions
 def remove_packages(packages: list, chroot: bool = False, mnt_dir: str = None) -> None:
     # Remove each package in the list separately
     for package in packages:

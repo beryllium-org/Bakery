@@ -38,7 +38,7 @@ from .iso import (
 from .keyboard import kb_set
 from .locale import enable_locales, set_locale
 from .misc import is_sbc, copy_logs, mark_installed, populate_messages, st
-from .packages import remove_packages, self_prune
+from .packages import nvidia_autoinstall, remove_packages, self_prune
 from .partitioning import mount_all_partitions, partition_disk, unmount_all
 from .timezone import tz_ntp, tz_set
 from .validate import gidc, shells, uidc
@@ -668,6 +668,9 @@ def install(settings=None) -> int:
                 remove_packages(
                     settings["packages"]["to_remove"], chroot=True, mnt_dir=mnt_dir
                 )
+
+                # Auto-install NVIDIA drivers when the hardware is present
+                nvidia_autoinstall(mnt_dir)
 
                 lp("Took {:.5f}".format(get_timer()))
                 st(8)  # Locale
